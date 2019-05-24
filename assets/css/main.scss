@@ -1,0 +1,531 @@
+$dark: #08111E;
+$dark-50: #07101c80;
+
+$light: #FFFAF9;
+
+$orange: #FF8555;
+$orange-constrast: #FF8E61;
+
+$blue: #2859A5;
+
+$breakpoint-lg: 1200px;
+$breakpoint-md: 992px;
+$breakpoint-sm: 768px;
+$breakpoint-xs: 576px;
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: $light;
+    font-family: neue-haas-unica, sans-serif;
+}
+
+
+input {
+    -webkit-appearance: none !important;
+}
+
+.v-align {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    &--right {
+        @extend .v-align;
+        justify-content: flex-end;
+    }
+}
+
+#overflow-avoider {
+    color: $dark;
+    overflow-x: hidden;
+}
+
+.no-focus-outline {
+    a:focus {
+        outline: none;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    select:focus {
+        outline: none;
+    }
+}
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-center-center {
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin unstyled-list {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    list-style: none;
+}
+
+@mixin unstyled-anchor {
+    color: $dark;
+    text-decoration: none;
+
+    &:hover {
+        color: $dark;
+        text-decoration: none;
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    #overflow-avoider {
+        overflow-y: auto;
+        height: calc(var(--vh, 1vh) * 100);
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.heading {
+    font-family: termina, sans-serif;
+
+    &--1 {
+        @extend .heading;
+        color: $light;
+        font-size: 50px;
+    }
+
+    &--2 {
+        color: $light;
+        font-size: 25px;
+        font-family: neue-haas-unica, sans-serif;
+    }
+
+    &--3 {
+        @extend .heading;
+        text-transform: uppercase;
+        color: $blue;
+        font-weight: bold;
+        font-size: 25px;
+        width: 100%;
+    }
+}
+
+header {
+    background: $blue;
+    background-image: url(../images/smile-2.svg);
+    background-position: center;
+    background-size: cover; 
+}
+
+#banner {
+    height: 100vh;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 50px;
+    
+}
+
+.button {
+    @include unstyled-anchor;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 0.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 2em;
+    margin: 0.5em;
+    transition: 0.15s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &--cta {
+        @extend .button;
+        background: $orange-constrast;
+        width: fit-content;
+        font-size: 18px;
+        height: 60px;
+        margin-top: 50px;
+    }
+
+    &--ghost {
+        @extend .navbar__list__item__button--ghost;
+        color: $dark-50 !important;
+        margin: 1em 0 !important;
+
+        .fas,
+        .fab,.far {
+            font-size: 12px;
+            margin-left: 1em ;
+            margin-top: 4px;
+        }
+        .far {
+            margin-top: 1px;
+        }
+
+        &:hover {
+            transform: none;
+            color: $dark !important;
+        }
+    }
+
+    padding-bottom: 0.1em !important;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__logo {
+        svg {
+            max-width: 100%;}
+    }
+    &__list {
+        @include unstyled-list;
+        display: flex;
+        flex-direction: row;
+
+        &__item {
+            &__button {
+                @extend .button;
+                color: $light;
+                margin: 1em;
+                padding: 0;
+
+                &:hover {
+                    color: $light;
+                    text-decoration: none;
+                }
+
+                &--ghost {
+                    @extend .navbar__list__item__button;
+                    border: 1px solid;
+                    padding: 0 2em;
+                }
+            }
+        }
+    }
+}
+
+.section {
+    padding: 50px 0;
+    min-height: 50vh;
+    @extend .v-align;
+
+    &:nth-child(even) {
+        background: $orange;
+
+        .heading--3 {
+            color: $dark;
+        }
+    }
+}
+
+.container {
+    padding: 0 25px;
+}
+
+.footer {
+    background: $blue;
+    color: $light;
+
+    &__info {
+        padding: 25px 0;
+
+        &__contact {
+            display: flex;
+            flex-direction: row;
+            @include unstyled-list;
+
+            &__div {
+                &__item {
+                    display: flex;
+                    flex-direction: row;
+
+                    &__anchor {
+                        @include unstyled-anchor;
+                        @extend .button;
+                        height: 30px;
+                        color: white;
+                        font-weight: normal;
+
+                        i {
+                            color: white;
+                        }
+
+                        .fas,
+                        .fab {
+                            color: $orange;
+                            margin: 0 1em;
+                        }
+
+                        &:hover {
+                            transform: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__credits {
+        text-align: center;
+        margin: 0;
+        padding: 10px 0;
+        background: $dark-50;
+
+        .paragraph {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.form {
+    background: $light;
+    width: 100%;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2px;
+
+    &__label {
+        display: none;
+    }
+
+    &__input {
+        height: 60px;
+        padding: 0 15px;
+        border: none;
+        background: transparent;
+        width: -webkit-fill-available;
+
+        &::placeholder {
+            color: $dark-50;
+        }
+    }
+
+    &__button {
+        @extend .button--cta;
+        margin: 0;
+        height: 40px;
+        font-size: 14px;
+        background: $blue;
+        color: white;
+        border: none;
+
+        &:hover {
+            transform: none;
+            color: white;
+        }
+    }
+}
+
+.col-lg-6 {
+    @extend .v-align;
+    padding: 25px;
+    flex-direction: column;
+}
+
+.no-space {
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: $breakpoint-sm) {
+    #overflow-avoider {
+        overflow-y: auto;
+        height: calc(var(--vh, 1vh) * 100);
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .heading {
+        &--1 {
+            font-size: 25px;
+        }
+
+        &--2 {
+            font-size: 22.5px;
+        }
+
+    }
+
+    .button {
+        height: 60px;
+        width: 100%;
+        margin: 1em auto !important;
+    }
+
+    .navbar {
+        flex-direction: column;
+
+        &__list {
+            display: block;
+
+            &__item {
+                display: inline-block;
+
+                &:nth-child(3) {
+                    display: block;
+                }
+
+                margin: 0.25em 1em;
+
+                &__button {
+                    height: 40px;
+                }
+            }
+        }
+    }
+
+    .button--ghost {
+        height: 60px;
+    }
+
+    .footer {
+        svg {
+            margin: 0 auto;
+        }
+
+        &__info {
+            &__contact {
+                flex-direction: column;
+                width: 100%;
+
+                &__div {
+                    width: 100%;
+
+                    &__item {
+                        width: 100%;
+
+                        &__anchor {
+                            height: 30px !important;
+                            width: 100%;
+
+                            i {
+                                color: white;
+                            }
+
+                            .fas,
+                            .fab {
+                                color: $orange;
+                                margin: 0 1em;
+                            }
+
+                            &:hover {
+                                transform: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &__credits {
+            text-align: center;
+            margin: 0;
+            padding: 10px 0;
+            background: $dark-50;
+
+            .paragraph {
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .form {
+        flex-direction: column;
+        background: transparent;
+        padding: 0;
+        &__input {
+            background: $light;
+            width: 100%;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 2px;
+        }
+    }
+}
+
+@media (max-width: $breakpoint-xs) {
+    .heading {
+        &--1 {
+            font-size: 22.5px;
+        }
+
+        &--2 {
+            font-size: 20.5px;
+        }
+    }
+    #banner{ 
+        padding: 0 25px;
+    }
+    header {
+        background: $blue;
+        background-image: url(../images/smile-2.svg);
+        background-position: top;
+        background-size: contain;
+        background-repeat: no-repeat; 
+    }
+}
