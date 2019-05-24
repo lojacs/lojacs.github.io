@@ -93,7 +93,7 @@ header {
 }
 
 #banner {
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   min-height: 620px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -475,7 +475,7 @@ header {
     background: #07101c80;
   }
   .footer__credits .paragraph {
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 0;
   }
   .form {
